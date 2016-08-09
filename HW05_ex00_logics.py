@@ -5,14 +5,17 @@
 ##############################################################################
 def even_odd():
     prompt = "Please provide a number to determine if it is even or odd: \n "
-    user_input = int(input(prompt))
+    user_input = (input(prompt))
+
     try:
+        user_input = int(user_input)
+    except:
+        print('You were just supposed to enter an integer...')
+    else:
         if user_input % 2 == 0:
             print('Even')
         else:
             print('Odd')
-    except:
-        print('You were just supposed to enter an integer...')
 
 
 def ten_by_ten():
@@ -34,20 +37,21 @@ def find_average():
     count = 0
     sum_of_input = 0
     prompt = "Please provide the next number. Once you want the average, please write 'done'.\n"
-    try:
-        user_input = input(prompt)
-        while str(user_input) != 'done':
-            count += 1
-            sum_of_input = sum_of_input + int(user_input)
-            user_input = input(prompt)
-        if count > 0:
-            return (sum_of_input / count)
-        else:
-            print('You need to enter a number first')
+    user_input = input(prompt)
+    while str(user_input) != 'done':
+        try:
+            sum_of_input = sum_of_input + user_input
+        except:
+            print("That was not a number! Please start again")
             find_average()
-    except:
-        print("That was not a number! Please start again")
-        find_average()
+        else:
+            count += 1
+            user_input = input(prompt)
+            if count > 0:
+                return (sum_of_input / count)
+            else:
+                print('You need to enter a number first')
+                return find_average()
 
 
 ##############################################################################
